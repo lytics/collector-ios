@@ -1,0 +1,40 @@
+{
+	parameters = {
+		"local_keys" = {
+			"EVENT_NAME_KEY" = event;
+			"EVENT_COUNT_KEY" = count;
+			"EVENT_TIMESTAMP_KEY" = timestamp;
+		};
+		"global_keys" = {
+			"DEVICE_KEY" = device;
+			"OS_KEY" = os;
+			"OS_VERSION_KEY" = "os_version";
+			"CARRIER_KEY" = carrier;
+			"RESOLUTION_KEY" = "screen_resolution";
+			"LOCALE_KEY" = locale;
+			"APP_VERSION_KEY" = "app_version";
+			"SESSION_TIME_KEY" = "session_time";
+		};
+		categories = {
+			all = (
+				"SESSION_TIME_KEY",
+			);
+			load = (
+				"LOCALE_KEY",
+				"APP_VERSION_KEY",
+			);
+		};
+	};
+	events = {
+		"default_tracked_events" = (
+			"LOAD_KEY",
+			"SESSION_UPDATE_KEY",
+			"SESSION_END_KEY",
+		);
+		keys = {
+			"LOAD_KEY" = Load;
+			"SESSION_UPDATE_KEY" = SessionOpen;
+			"SESSION_END_KEY" = SessionEnded;
+		};
+	};
+}
