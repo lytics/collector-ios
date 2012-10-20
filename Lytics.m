@@ -135,7 +135,11 @@ static Lytics *s_sharedLytics = nil;
 	unsentSessionLength += currTime - lastTime;
 	
 	int duration = unsentSessionLength;
-	[[ConnectionQueue sharedInstance] endSession];
+	
+	if ([[LyticsSettings generalSetting:@"end_session_on_app_focus_lost"] boolValue]) {
+		[self endSession];
+	}
+	
 	unsentSessionLength -= duration;
 }
 
@@ -143,7 +147,9 @@ static Lytics *s_sharedLytics = nil;
 {
 	lastTime = CFAbsoluteTimeGetCurrent();
 	
-	[[ConnectionQueue sharedInstance] beginSession];
+	if ([[LyticsSettings generalSetting:@"end_session_on_app_focus_lost"] boolValue]) {
+		[self startSession];
+	}
 	
 	isSuspended = NO;
 }
@@ -204,7 +210,23 @@ static Lytics *s_sharedLytics = nil;
 	sessionStartTimestamp = time(NULL);
 	[[ConnectionQueue sharedInstance] setAccountID:accountID];
 	[[ConnectionQueue sharedInstance] setAppHost:appHost];
+	
+	[self recordEvent:@"LOAD_KEY" category:@"load"];
+	
+	if ([[LyticsSettings generalSetting:@"start_session_on_load"] boolValue]) {
+		[self startSession];
+	}
+}
+
+- (void)startSession
+{
+	sessionStartTimestamp = time(NULL);
 	[[ConnectionQueue sharedInstance] beginSession];
+}
+
+- (void)endSession
+{
+	[[ConnectionQueue sharedInstance] endSession];
 }
 
 - (void)recordEvent:(NSString *)key

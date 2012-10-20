@@ -1,9 +1,12 @@
 {
+	"general_settings" = {
+		"start_session_on_load" = YES;
+		"end_session_on_app_focus_lost" = YES;
+	};
 	parameters = {
 		"local_keys" = {
 			"EVENT_NAME_KEY" = event;
 			"EVENT_COUNT_KEY" = count;
-			"EVENT_TIMESTAMP_KEY" = timestamp;
 		};
 		"global_keys" = {
 			"DEVICE_KEY" = device;
@@ -14,10 +17,13 @@
 			"LOCALE_KEY" = locale;
 			"APP_VERSION_KEY" = "app_version";
 			"SESSION_TIME_KEY" = "session_time";
+			"TIMESTAMP_KEY" = timestamp;
 		};
 		categories = {
 			all = (
+				"TIMESTAMP_KEY",
 				"SESSION_TIME_KEY",
+				"OS_KEY",
 			);
 			load = (
 				"LOCALE_KEY",
@@ -28,11 +34,13 @@
 	events = {
 		"default_tracked_events" = (
 			"LOAD_KEY",
+			"SESSION_START_KEY",
 			"SESSION_UPDATE_KEY",
 			"SESSION_END_KEY",
 		);
 		keys = {
 			"LOAD_KEY" = Load;
+			"SESSION_START_KEY" = SessionStart;
 			"SESSION_UPDATE_KEY" = SessionOpen;
 			"SESSION_END_KEY" = SessionEnded;
 		};

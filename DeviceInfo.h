@@ -24,6 +24,7 @@
 + (NSString *)resolution;
 + (NSString *)locale;
 + (NSString *)appVersion;
++ (NSNumber *)timestamp; //unix timestamp
 
 // Return a JSON string containing all device metrics above.
 + (NSString *)metrics;

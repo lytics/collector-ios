@@ -58,6 +58,11 @@ static LyticsSettings* _lyticsSettings = nil;
 	}
 }
 
++ (id)generalSetting:(NSString*)settingName
+{
+	return [[LyticsSettings objectForKey:@"general_settings"] objectForKey:settingName];
+}
+
 + (NSDictionary*)globalKeys
 {
 	return [[LyticsSettings objectForKey:@"parameters"] objectForKey:@"global_keys"];
