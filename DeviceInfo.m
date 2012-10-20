@@ -85,6 +85,11 @@
 	return [[[NSBundle mainBundle] infoDictionary] objectForKey:(NSString*)kCFBundleVersionKey];
 }
 
++ (NSNumber *)timestamp
+{
+	return [NSNumber numberWithLong:time(NULL)];
+}
+
 + (NSString *)metrics
 {
 	NSMutableDictionary* dict = [[[NSMutableDictionary alloc] initWithCapacity:7] autorelease];
@@ -99,6 +104,7 @@
 	[dict setObject:[DeviceInfo resolution] forKey:[LyticsSettings parameterNameForKey:@"RESOLUTION_KEY"]];
 	[dict setObject:[DeviceInfo locale] forKey:[LyticsSettings parameterNameForKey:@"LOCALE_KEY"]];
 	[dict setObject:[DeviceInfo appVersion] forKey:[LyticsSettings parameterNameForKey:@"APP_VERSION_KEY"]];
+	[dict setObject:[DeviceInfo timestamp] forKey:@"TIMESTAMP_KEY"];
 	
 	return [dict JSONString];
 }
@@ -113,6 +119,7 @@
 	[LyticsSettings setAccessorForGlobalKey:@"RESOLUTION_KEY" target:target selector:@selector(resolution)];
 	[LyticsSettings setAccessorForGlobalKey:@"LOCALE_KEY" target:target selector:@selector(locale)];
 	[LyticsSettings setAccessorForGlobalKey:@"APP_VERSION_KEY" target:target selector:@selector(appVersion)];
+	[LyticsSettings setAccessorForGlobalKey:@"TIMESTAMP_KEY" target:target selector:@selector(timestamp)];
 }
 
 @end

@@ -76,11 +76,11 @@ static ConnectionQueue *s_sharedConnectionQueue = nil;
 
 - (void)beginSession
 {
-	if ([[LyticsSettings defaultEventKeys] containsObject:@"LOAD_KEY"]) {
+	if ([[LyticsSettings defaultEventKeys] containsObject:@"SESSION_START_KEY"]) {
 		Event* event = [[Event alloc] init];
 //		event.timestamp = time(NULL);
-		event.key = @"LOAD_KEY";
-		event.categories = [NSArray arrayWithObject:@"load"];
+		event.key = @"SESSION_START_KEY";
+		event.categories = nil;
 		
 		[queue_ addObject:event];
 		[self commit];

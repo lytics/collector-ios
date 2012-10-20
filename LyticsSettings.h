@@ -16,6 +16,10 @@
 @property (atomic, readonly) NSDictionary* settings;
 @property (atomic, readonly) NSMutableDictionary* globalParameterGetters;
 
+// Get the value of a settings stored in the general_settings section of
+// LyticsSettings.plist
++ (id)generalSetting:(NSString*)settingName;
+
 // Get all global keys and their assosciated parameter names. Global parameters
 // are those that are not event-dependent. They will be determined when an
 // event is sent using the assosciated accessor set with setAccessorForGlobalKey
