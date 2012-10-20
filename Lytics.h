@@ -39,6 +39,14 @@
 // provided by Lytics.
 - (void)start:(NSString *)accountID withHost:(NSString*)appHost;
 
+// Use these to perform session tracking. Often it might be desirable to end
+// the current session when the user puts your app in the background and start
+// a new session when the user comes back to your app. Your app may be
+// technically running in the background for an arbitrarily long time while the
+// user does whatever else on the phone.
+- (void)startSession;
+- (void)endSession;
+
 // Record event with given name and include only the fields defined in the
 // special "all" category.
 - (void)recordEvent:(NSString *)key;
